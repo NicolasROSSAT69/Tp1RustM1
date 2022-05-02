@@ -61,6 +61,20 @@ fn note_livre(livre: Livre) -> f32 {
     somme as f32 / mult
 }
 
+#[derive(Debug)]
+enum ResultatDivision {
+    DivisionParZero,
+    DivisionCorrecte(i32),
+}
+
+fn division(a: i32, b: i32) -> ResultatDivision {
+    if b == 0 {
+        ResultatDivision::DivisionParZero
+    } else {
+        ResultatDivision::DivisionCorrecte(a / b)
+    }
+}
+
 fn main() {
     println!("mad(1, 2, 3) : {}", mad(1, 2, 3));
     println!("sum_from_to_while(1, 5) : {}", sum_from_to_while(1, 5));
@@ -190,4 +204,6 @@ fn main() {
         l5.titre,
         note_livre(l5.clone())
     );
+
+    println!("Division : {:?}", division(10, 2));
 }
